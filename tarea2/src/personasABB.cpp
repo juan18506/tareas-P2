@@ -1,23 +1,45 @@
 #include "../include/personasABB.h"
 
 struct rep_personasAbb {
-
+    rep_personasAbb *izq;
+    TPersona persona;
+    rep_personasAbb *der;
 };
 
 TPersonasABB crearTPersonasABB() {
-    return NULL;
+    TPersonasABB nuevoArbol = NULL;
+    return nuevoArbol;
 }
 
-bool esVacioTPersonasABB(TPersonasABB personasABB) {
-    return false;
+bool esVacioTPersonasABB(TPersonasABB personasABB) { 
+    return personasABB == NULL;
 }
 
 void insertarTPersonasABB(TPersonasABB &personasABB, TPersona p) {
+    if (personasABB == NULL) {
+        personasABB = new rep_personasAbb;
+	personasABB->persona = p;
+	personasABB->izq = NULL;
+	personasABB->der = NULL;
+    } else if (idTPersona(p) < idTPersona(personasABB->persona)) {
+        insertarTPersonasABB(personasABB->izq, p);
+    } else if (idTPersona(p) > idTPersona(personasABB->persona)) {
+        insertarTPersonasABB(personasABB->der, p);
+    };
+}
 
+void liberarNodoTPersonasABB(&personasABB, nat id) {
+	
 }
 
 void liberarTPersonasABB(TPersonasABB &personasABB) {
+    if (personasABB == NULL) {
+        return;
+    }
 
+    liberarTPersonasABB(personasABB->izq);
+    liberarNodoTPersonasABB(personasABB, idTPersona(personasABB->persona));
+    liberarTPersonasABB(personasABB->der);
 }
 
 void imprimirTPersonasABB(TPersonasABB personasABB) {
