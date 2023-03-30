@@ -29,22 +29,6 @@ void insertarTPersonasABB(TPersonasABB &personasABB, TPersona p) {
 }
 
 void liberarNodoTPersonasABB(TPersonasABB &personasABB) {
-    if (personasABB == NULL || (personasABB->izq == NULL && personasABB->der == NULL)) {
-        return;
-    }
-
-    if (personasABB->izq != NULL) {
-	liberarTPersona(personasABB->izq->persona);
-        delete personasABB->izq;
-	personasABB->izq = NULL;
-    }
-
-    if (personasABB->der != NULL) {
-	liberarTPersona(personasABB->der->persona);
-        delete personasABB->der;
-	personasABB->der = NULL;
-    }
-
     liberarTPersona(personasABB->persona);
     delete personasABB;
     personasABB = NULL;
