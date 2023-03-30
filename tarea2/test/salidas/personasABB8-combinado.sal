@@ -1,0 +1,18 @@
+==27233== Invalid read of size 8
+==27233==    at 0x404473: imprimirTPersonasLDE(rep_personasLDE*) (personasLDE.cpp:90)
+==27233==    by 0x4032D6: main_aplanarArbolPersonas(rep_personasAbb*&) (principal.cpp:820)
+==27233==    by 0x401CAA: main (principal.cpp:357)
+==27233==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==27233== 
+==27233== 
+==27233== Process terminating with default action of signal 11 (SIGSEGV): dumping core
+==27233==  Access not within mapped region at address 0x0
+==27233==    at 0x404473: imprimirTPersonasLDE(rep_personasLDE*) (personasLDE.cpp:90)
+==27233==    by 0x4032D6: main_aplanarArbolPersonas(rep_personasAbb*&) (principal.cpp:820)
+==27233==    by 0x401CAA: main (principal.cpp:357)
+==27233==  If you believe this happened as a result of a stack
+==27233==  overflow in your program's main thread (unlikely but
+==27233==  possible), you can try to increase the size of the
+==27233==  main thread stack using the --main-stacksize= flag.
+==27233==  The main thread stack size used in this run was 8388608.
+timeout: la orden monitorizada ha volcado un 'core'

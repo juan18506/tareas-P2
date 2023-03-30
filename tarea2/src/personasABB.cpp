@@ -45,15 +45,29 @@ void liberarTPersonasABB(TPersonasABB &personasABB) {
 }
 
 void imprimirTPersonasABB(TPersonasABB personasABB) {
-   
+  if (personasABB == NULL) {
+      return;
+  }
+
+  imprimirTPersonasABB(personasABB->izq);
+  imprimirTPersona(personasABB->persona);
+  imprimirTPersonasABB(personasABB->der);
 }
 
 nat cantidadTPersonasABB(TPersonasABB personasABB) {
-    return 0;
+    if (personasABB == NULL) {
+        return 0;
+    }    
+    
+    return 1 + cantidadTPersonasABB(personasABB->izq) + cantidadTPersonasABB(personasABB->der);
 }
 
 TPersona maxIdPersona(TPersonasABB personasABB) {
-    return NULL;
+    while (personasABB != NULL && personasABB->der != NULL) {
+    	personasABB = personasABB->der;
+    }
+
+    return personasABB->persona;
 }
 
 void removerTPersonasABB(TPersonasABB &personasABB, nat id) {
