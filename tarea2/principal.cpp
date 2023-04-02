@@ -721,19 +721,31 @@ void main_crearYConcatenarListaPersonas(TPersonasLDE &listaPersonas){
 
 void main_concatenarListaPersonasTiempo(TPersonasLDE &listaPersonas){
     assert (listaPersonas != NULL);
-    for (int i = 0; i < 10000; i++){
+    nat tamanio = leerNat();
+    nat timeout = leerNat();
+    clock_t tm = clock();
+    for (nat i = 0; i < tamanio; i++){
         TAgendaLS agenda = crearAgendaLS();
         TPersona persona = crearTPersona(i, 20, "Juan", agenda);
-        insertarTPersonasLDE(listaPersonas, persona, i+1);
+        insertarTPersonasLDE(listaPersonas, persona, 1);
     }
     TPersonasLDE listaPersonas2 = crearTPersonasLDE();
-    for (int i = 0; i < 10000; i++){
+    for (nat i = 0; i < tamanio; i++){
         TAgendaLS agenda = crearAgendaLS();
         TPersona persona = crearTPersona(i, 20, "Juan", agenda);
-        insertarTPersonasLDE(listaPersonas2, persona, i+1);
+        insertarTPersonasLDE(listaPersonas2, persona, 1);
     }
+    
     TPersonasLDE personasConcat = concatenarTPersonasLDE(listaPersonas, listaPersonas2);
     listaPersonas = personasConcat;
+    
+    tm = clock() - tm;
+    float tiempo = ((float)tm) / CLOCKS_PER_SEC;
+    //printf("%f \n", tiempo);
+    if (tiempo > timeout)
+    printf("ERROR, tiempo excedido; %.1f > %d \n", tiempo, timeout);
+    else
+    printf("Bien.\n");
 }
 
 void main_crearArbolPersonas(TPersonasABB &arbolPersonas){

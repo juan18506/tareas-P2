@@ -18,9 +18,9 @@ bool esVacioTPersonasABB(TPersonasABB personasABB) {
 void insertarTPersonasABB(TPersonasABB &personasABB, TPersona p) {
     if (personasABB == NULL) {
         personasABB = new rep_personasAbb;
-	personasABB->persona = p;
-	personasABB->izq = NULL;
-	personasABB->der = NULL;
+	    personasABB->persona = p;
+	    personasABB->izq = NULL;
+	    personasABB->der = NULL;
     } else if (idTPersona(p) < idTPersona(personasABB->persona)) {
         insertarTPersonasABB(personasABB->izq, p);
     } else if (idTPersona(p) > idTPersona(personasABB->persona)) {
@@ -77,20 +77,26 @@ void removerTPersonasABB(TPersonasABB &personasABB, nat id) {
 
     if (idTPersona(personasABB->persona) > id) {
         removerTPersonasABB(personasABB->izq, id);
-    } else if (idTPersona(personasABB)->persona < id) {
+    } else if (idTPersona(personasABB->persona) < id) {
         removerTPersonasABB(personasABB->der, id);
     } else {
         if (personasABB->der == NULL) {
-	    TPersonasABB aBorrar = personasABB;
-	    personasABB = personasABB->izq;
-	    delete aBorrar;
-	} else if (personasABB->izq == NULL) {
-	    TPersonas aBorrar = personasABB;
-	    personasABB = personasABB->der;
-	    delete aBorrar;
-	} else {
-	    
-	}
+            TPersonasABB aBorrar = personasABB;
+            personasABB = personasABB->izq;
+            delete aBorrar;
+	    } else if (personasABB->izq == NULL) {
+            TPersonasABB aBorrar = personasABB;
+            personasABB = personasABB->der;
+            delete aBorrar;
+	    } else {
+            TPersonasABB aBorrar = personasABB;
+            TPersonasABB mover = personasABB->izq;
+            while (mover->der != NULL) {
+                mover = mover->der;
+            }
+            personasABB = mover;
+            delete aBorrar;
+	    }
     }
 }
 

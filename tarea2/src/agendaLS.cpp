@@ -10,7 +10,6 @@ TAgendaLS crearAgendaLS() {
     return nuevaAgenda;
 }
 
-// TODO: chequear si se podria hacer mejor
 void agregarEnAgendaLS(TAgendaLS &agenda, TEvento evento) {
     // Puntero al nuevo evento en forma de lista
     TAgendaLS nuevoEvento = new rep_agendaLS;
@@ -34,7 +33,7 @@ void agregarEnAgendaLS(TAgendaLS &agenda, TEvento evento) {
 
         return;
     }
-
+    
     TAgendaLS anteriorAux = agenda;
     TAgendaLS punteroAux = agenda->sig;
 
@@ -69,12 +68,10 @@ void agregarEnAgendaLS(TAgendaLS &agenda, TEvento evento) {
 
 
 void imprimirAgendaLS(TAgendaLS agenda) {
-    TAgendaLS punteroAux = agenda;
-
     // Recorrida completa de la agenda
-    while (punteroAux != NULL) {
-        imprimirTEvento(punteroAux->evento);
-        punteroAux = punteroAux->sig;
+    while (agenda != NULL) {
+        imprimirTEvento(agenda->evento);
+        agenda = agenda->sig;
     }
 }
 
@@ -82,27 +79,45 @@ void liberarAgendaLS(TAgendaLS &agenda) {
     TAgendaLS punteroAux = agenda;
     TAgendaLS otroPunteroAux = agenda;
 
-    // Recorrida en la agenda
+    // Recorrida completa de la agenda
     while (punteroAux != NULL) {
         liberarTEvento(punteroAux->evento);
         punteroAux = punteroAux->sig;
         delete otroPunteroAux;
         otroPunteroAux = punteroAux;
     }
+
+    agenda = NULL;
 }
 
 bool esVaciaAgendaLS(TAgendaLS agenda){
     return agenda == NULL;
 }
 
-// TODO: revisar tiempo de ejecucion
 TAgendaLS copiarAgendaLS(TAgendaLS agenda){
-    TAgendaLS punteroAux = agenda;
     TAgendaLS nuevaAgenda = crearAgendaLS();
 
-    while (punteroAux != NULL) {
-        agregarEnAgendaLS(nuevaAgenda, copiarTEvento(punteroAux->evento));
+    // Caso agenda vacia
+    if (agenda == NULL) {
+        return nuevaAgenda;
+    }
+
+    nuevaAgenda = new rep_agendaLS;
+    TAgendaLS punteroAux = nuevaAgenda;
+
+    while (agenda != NULL) {
+        punteroAux->evento = copiarTEvento(agenda->evento);
+
+        // Se ejecuta el else SOLO en la ultima iteracion del while
+        if (agenda->sig != NULL) {
+            punteroAux->sig = new rep_agendaLS;
+        } else {
+            punteroAux->sig = NULL;
+        }
+
+
         punteroAux = punteroAux->sig;
+        agenda = agenda->sig;
     }
 
     return nuevaAgenda;
@@ -110,25 +125,23 @@ TAgendaLS copiarAgendaLS(TAgendaLS agenda){
 
 
 bool estaEnAgendaLS(TAgendaLS agenda, int id) {
-    TAgendaLS punteroAux = agenda;
-
     // Recorre la agenda mientras que no encuentra el ID buscado
-    while (punteroAux != NULL && idTEvento(punteroAux->evento) != id) {
-        punteroAux = punteroAux->sig;
+    while (agenda != NULL && idTEvento(agenda->evento) != id) {
+        agenda = agenda->sig;
     }
     
-    return punteroAux != NULL;
+    return agenda != NULL;
 }
 
 TEvento obtenerDeAgendaLS(TAgendaLS agenda, int id) {
-    TAgendaLS punteroAux = agenda;
-
-    while (idTEvento(punteroAux->evento) != id) {
-        punteroAux = punteroAux->sig;
+    // Recorre la agenda hasta encontrar el id buscado (en rango por PRE)
+    while (idTEvento(agenda->evento) != id) {
+        agenda = agenda->sig;
     }
 
-    return punteroAux->evento;
+    return agenda->evento;
 }
+
 
 void posponerEnAgendaLS(TAgendaLS &agenda, int id, nat n) {
     TAgendaLS punteroAux = agenda;
@@ -141,7 +154,7 @@ void posponerEnAgendaLS(TAgendaLS &agenda, int id, nat n) {
 
     posponerTEvento(punteroAux->evento, n);
 
-    // Mueve el evento en la agenda hasta que este en la posicion correcta (segun agregarEnAgendaLS)
+    // Mueve el evento en la agenda hasta que este en la posicion correcta (bajo el critero de agregarEnAgendaLS)
     while (punteroAux->sig != NULL && compararTFechas(fechaTEvento(punteroAux->evento), fechaTEvento(punteroAux->sig->evento)) == 1) {
         eventoAux = punteroAux->evento;
         punteroAux->evento = punteroAux->sig->evento;
@@ -151,29 +164,25 @@ void posponerEnAgendaLS(TAgendaLS &agenda, int id, nat n) {
 }
 
 void imprimirEventosFechaLS(TAgendaLS agenda, TFecha fecha) {
-    TAgendaLS punteroAux = agenda;
-
     // Recorre la agenda hasta encontrar el primer evento con la fecha dada
-    while (punteroAux != NULL && compararTFechas(fechaTEvento(punteroAux->evento), fecha) != 0) {
-        punteroAux = punteroAux->sig;
+    while (agenda != NULL && compararTFechas(fechaTEvento(agenda->evento), fecha) != 0) {
+        agenda = agenda->sig;
     }
 
     // Imprime todos los eventos que tengan esa fecha 
-    while (punteroAux != NULL && compararTFechas(fechaTEvento(punteroAux->evento), fecha) == 0) {
-        imprimirTEvento(punteroAux->evento);
-        punteroAux = punteroAux->sig;
+    while (agenda != NULL && compararTFechas(fechaTEvento(agenda->evento), fecha) == 0) {
+        imprimirTEvento(agenda->evento);
+        agenda = agenda->sig;
     }
 }
 
 bool hayEventosFechaLS(TAgendaLS agenda, TFecha fecha) {
-    TAgendaLS punteroAux = agenda;
-
     // Recorre la agenda hasta que encuentra un evento con la fecha dada
-    while (punteroAux != NULL && compararTFechas(fechaTEvento(punteroAux->evento), fecha) != 0) {
-        punteroAux = punteroAux->sig;
+    while (agenda != NULL && compararTFechas(fechaTEvento(agenda->evento), fecha) != 0) {
+        agenda = agenda->sig;
     }
 
-    return punteroAux != NULL;
+    return agenda != NULL;
 }
 
 void removerDeAgendaLS(TAgendaLS &agenda, int id) {
@@ -196,7 +205,7 @@ void removerDeAgendaLS(TAgendaLS &agenda, int id) {
         return;
     }
 
-    // Recorrida en el arreglo buscando el evento con el ID dado
+    // Recorrida en el arreglo buscando el evento con el ID dado (en rango por PRE)
     while (idTEvento(punteroAux->evento) != id) {
         punteroAnteriorAux = punteroAnteriorAux->sig;
         punteroAux = punteroAux->sig;

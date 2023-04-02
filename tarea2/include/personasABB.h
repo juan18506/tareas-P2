@@ -38,7 +38,7 @@ void liberarTPersonasABB(TPersonasABB &personasABB);
 void imprimirTPersonasABB(TPersonasABB personasABB);
 
 // Función para obtener la cantidad de personas en el árbol binario
-// La funcion es Theta(n) peor caso, siendo n la cntidad de personas en el árbol binario
+// La funcion es Theta(n) peor caso, siendo n la cantidad de personas en el árbol binario
 nat cantidadTPersonasABB(TPersonasABB personasABB);
 
 // Función para obtener la persona con el id más grande del árbol binario

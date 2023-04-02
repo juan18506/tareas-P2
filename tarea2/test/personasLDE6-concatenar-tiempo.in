@@ -1,6 +1,6 @@
 crearListaPersonas
 
-concatenarListaPersonasTiempo
+concatenarListaPersonasTiempo 100000 2
 
 liberarListaPersonas
 

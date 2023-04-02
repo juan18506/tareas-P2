@@ -66,7 +66,6 @@ TEvento obtenerDeAgendaDeTPersona(TPersona persona, int id) {
     return obtenerDeAgendaLS(persona->agenda, id);
 }
 
-// TODO: Orden n²
 TPersona copiarTPersona(TPersona persona) {
     return crearTPersona(persona->id, persona->edad, persona->nombre, copiarAgendaLS(persona->agenda));
 }

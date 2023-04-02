@@ -22,7 +22,7 @@ typedef struct rep_persona *TPersona;
 TPersona crearTPersona(nat id, nat edad, const char nombre[100], TAgendaLS agenda);
 
 // Función para liberar la memoria asignada a una persona
-// La función es Theta(1) peor caso
+// La función es Theta(n) peor caso, donde n es la cantidad de eventos en la agenda de la persona
 void liberarTPersona(TPersona &persona);
 
 // Función para imprimir una persona con el siguiente formato:
