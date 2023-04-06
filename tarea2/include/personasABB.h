@@ -30,7 +30,7 @@ bool esVacioTPersonasABB(TPersonasABB personasABB);
 void insertarTPersonasABB(TPersonasABB &personasABB, TPersona p);
 
 // Función para liberar la memoria asignada a un árbol binario
-// La funcion es Theta(n) pero caso, siendo n la cantidad de personas en el árbol binario
+// La función es O(n*m) peor caso, donde n es la cantidad de personas en el árbol y m es la cantidad de eventos de la agenda con mas eventos entre todas las personas del árbol.
 void liberarTPersonasABB(TPersonasABB &personasABB);
 
 // Función para imprimir las personas del árbol binario en orden de id
@@ -49,7 +49,7 @@ TPersona maxIdPersona(TPersonasABB personasABB);
 // Función para eliminar una persona del árbol binario
 // En caso de que el nodo a remover tenga ambos subárboles no vacíos,
 // se reemplaza por la Persona con el id más grande del subárbol izquierdo. 
-// La funcion es Theta(n) peor caso, siendo n la cantidad de personas en el árbol binario
+// La función es Theta(n+m) peor caso, donde n es la cantidad de personas en el árbol y m es la cantidad de eventos de la agenda de la perosna a remover.
 // PRE: la persona está en el árbol binario
 void removerTPersonasABB(TPersonasABB &personasABB, nat id);
 

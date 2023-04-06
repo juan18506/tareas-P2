@@ -26,7 +26,7 @@ TPersonasLDE crearTPersonasLDE();
 void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos);
 
 // Función para liberar la memoria asignada a una lista de personas
-// La función es Theta(n) peor caso
+// La función es O(n*m) peor caso, donde n es la cantidad de personas en la lista y m es la cantidad de eventos de la agenda con mas eventos entre todas las personas de la lista.
 void liberarTPersonasLDE(TPersonasLDE &personas);
 
 // Función para imprimir secuencialmente las personas de la lista de personas
@@ -38,12 +38,12 @@ void imprimirTPersonasLDE(TPersonasLDE personas);
 nat cantidadTPersonasLDE(TPersonasLDE personas);
 
 // Función para eliminar una persona del inicio de la lista de personas
-// La función es Theta(1) peor caso
+// La función es Theta(m) peor caso, donde m es la cantidad de eventos de la agenda de persona que se elimina de la lista.
 // Si no hay personas en la lista la función no hace nada
 void eliminarInicioTPersonasLDE(TPersonasLDE &personas);
 
 // Función para eliminar una persona del final de la lista de personas
-// La función es Theta(1) peor caso
+// La función es Theta(m) peor caso, donde m es la cantidad de eventos de la agenda de la persona que se elimina de la lista.
 // Si no hay personas en la lista la función no hace nada
 void eliminarFinalTPersonasLDE(TPersonasLDE &personas);
 

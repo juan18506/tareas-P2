@@ -28,6 +28,8 @@ void insertarTPersonasABB(TPersonasABB &personasABB, TPersona p) {
     };
 }
 
+// Theta(n) donde n es la cantidad de elementos en la agenda.
+// PRE: la lista no es NULL.
 void liberarNodoTPersonasABB(TPersonasABB &personasABB) {
     liberarTPersona(personasABB->persona);
     delete personasABB;
@@ -75,41 +77,65 @@ void removerTPersonasABB(TPersonasABB &personasABB, nat id) {
         return;
     }
 
-    if (idTPersona(personasABB->persona) > id) {
+    if (id < idTPersona(personasABB->persona)) {
         removerTPersonasABB(personasABB->izq, id);
-    } else if (idTPersona(personasABB->persona) < id) {
+    } else if (id > idTPersona(personasABB->persona)) {
         removerTPersonasABB(personasABB->der, id);
     } else {
         if (personasABB->der == NULL) {
             TPersonasABB aBorrar = personasABB;
             personasABB = personasABB->izq;
-            delete aBorrar;
+            liberarNodoTPersonasABB(aBorrar);
 	    } else if (personasABB->izq == NULL) {
             TPersonasABB aBorrar = personasABB;
             personasABB = personasABB->der;
-            delete aBorrar;
+            liberarNodoTPersonasABB(aBorrar);
 	    } else {
-            TPersonasABB aBorrar = personasABB;
-            TPersonasABB mover = personasABB->izq;
-            while (mover->der != NULL) {
-                mover = mover->der;
-            }
-            personasABB = mover;
-            delete aBorrar;
+            TPersona maxPersonaIzq = maxIdPersona(personasABB->izq);
+            liberarTPersona(personasABB->persona);
+            personasABB->persona = copiarTPersona(maxPersonaIzq);
+            removerTPersonasABB(personasABB->izq, idTPersona(maxPersonaIzq));
 	    }
     }
 }
 
 bool estaTPersonasABB(TPersonasABB personasABB, nat id) {
-    return false;
+    while (personasABB != NULL && idTPersona(personasABB->persona) != id) {
+        if (idTPersona(personasABB->persona) > id) {
+            personasABB = personasABB->izq;
+        } else {
+            personasABB = personasABB->der;
+        }
+    }
+    
+    return personasABB != NULL;
 }
 
 TPersona obtenerDeTPersonasABB(TPersonasABB personasABB, nat id) {
-    return NULL;
+    while (idTPersona(personasABB->persona) != id) {
+        if (idTPersona(personasABB->persona) > id) {
+            personasABB = personasABB->izq;
+        } else {
+            personasABB = personasABB->der;
+        }
+    }
+    
+    return personasABB->persona;
 }
 
 nat alturaTPersonasABB(TPersonasABB personasABB) {
-    return 0;
+    if (personasABB == NULL || (personasABB->izq == NULL && personasABB->der == NULL)) {
+        return 0;
+    }
+
+    int alturaIzquierda = alturaTPersonasABB(personasABB->izq);
+    int alturaDerecha = alturaTPersonasABB(personasABB->der);
+
+    if (alturaIzquierda > alturaDerecha) {
+        return alturaIzquierda + 1;
+    } else {
+        return alturaDerecha + 1;
+    }
 }
 
 bool esPerfectoTPersonasABB(TPersonasABB personasABB) {
@@ -117,9 +143,50 @@ bool esPerfectoTPersonasABB(TPersonasABB personasABB) {
 }
 
 TPersonasABB mayoresTPersonasABB(TPersonasABB personasABB, nat edad) {
-    return NULL;
+    TPersonasABB mayoresABB = crearTPersonasABB();
+
+    if (personasABB == NULL) {
+        return mayoresABB;
+    }
+
+    TPersonasABB mayoresIzq = mayoresTPersonasABB(personasABB->izq, edad);
+    TPersonasABB mayoresDer = mayoresTPersonasABB(personasABB->der, edad);
+
+    TPersona raiz = personasABB->persona;
+
+    if (edadTPersona(raiz) > edad) {
+        mayoresABB = new rep_personasAbb;
+        mayoresABB->persona = copiarTPersona(raiz);
+        mayoresABB->izq = mayoresIzq;
+        mayoresABB->der = mayoresDer;
+    } else if (mayoresIzq == NULL) {
+        mayoresABB = mayoresDer;
+    } else if (mayoresDer == NULL) {
+        mayoresABB = mayoresIzq;
+    } else {
+        TPersona maxPersonaIzq = maxIdPersona(mayoresIzq);
+        mayoresABB = new rep_personasAbb;
+        mayoresABB->persona = copiarTPersona(maxPersonaIzq);
+        mayoresABB->izq = mayoresIzq;
+        mayoresABB->der = mayoresDer;
+        removerTPersonasABB(mayoresIzq, idTPersona(maxPersonaIzq));
+    }
+
+    return mayoresABB;
 }
 
 TPersonasLDE aTPersonasLDE(TPersonasABB personasABB) {
-    return NULL;
+    TPersonasLDE nuevaLista = crearTPersonasLDE();
+
+    if (personasABB == NULL) {
+        return nuevaLista;
+    }
+
+    insertarTPersonasLDE(nuevaLista, copiarTPersona(personasABB->persona), 1);
+
+    TPersonasLDE listaIzq = aTPersonasLDE(personasABB->izq);
+    TPersonasLDE listaDer = aTPersonasLDE(personasABB->der);
+
+    nuevaLista = concatenarTPersonasLDE(listaIzq, listaDer);
+    return nuevaLista;
 }

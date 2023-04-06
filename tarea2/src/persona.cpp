@@ -22,6 +22,7 @@ TPersona crearTPersona(nat id, nat edad, const char nombre[100], TAgendaLS agend
 void liberarTPersona(TPersona &persona) {
     liberarAgendaLS(persona->agenda);
     delete persona;
+    persona = NULL;
 }
 
 //Imprime a la persona utilizando printf e imprimeAgendaLS
