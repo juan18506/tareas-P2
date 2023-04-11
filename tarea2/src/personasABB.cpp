@@ -49,7 +49,7 @@ void liberarTPersonasABB(TPersonasABB &personasABB) {
 
 void imprimirTPersonasABB(TPersonasABB personasABB) {
   if (personasABB == NULL) {
-      return;
+    return;
   }
 
   imprimirTPersonasABB(personasABB->izq);
