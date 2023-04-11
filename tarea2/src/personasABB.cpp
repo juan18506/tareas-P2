@@ -1,4 +1,5 @@
 #include "../include/personasABB.h"
+#include <math.h>
 
 struct rep_personasAbb {
     rep_personasAbb *izq;
@@ -124,14 +125,14 @@ TPersona obtenerDeTPersonasABB(TPersonasABB personasABB, nat id) {
 }
 
 nat alturaTPersonasABB(TPersonasABB personasABB) {
-    if (personasABB == NULL || (personasABB->izq == NULL && personasABB->der == NULL)) {
+    if (personasABB == NULL) {
         return 0;
     }
 
     int alturaIzquierda = alturaTPersonasABB(personasABB->izq);
     int alturaDerecha = alturaTPersonasABB(personasABB->der);
 
-    if (alturaIzquierda > alturaDerecha) {
+    if (alturaIzquierda >= alturaDerecha) {
         return alturaIzquierda + 1;
     } else {
         return alturaDerecha + 1;
@@ -139,7 +140,15 @@ nat alturaTPersonasABB(TPersonasABB personasABB) {
 }
 
 bool esPerfectoTPersonasABB(TPersonasABB personasABB) {
-    return false;
+    if (personasABB == NULL || (personasABB->der == NULL && personasABB->izq == NULL)) {
+        return true;
+    }
+
+    nat alturaIzq = alturaTPersonasABB(personasABB->izq);
+    nat alturaDer = alturaTPersonasABB(personasABB->der);
+    nat nodos = cantidadTPersonasABB(personasABB);
+
+    return (alturaIzq == alturaDer) && (pow(2, alturaIzq + 1) - 1 == nodos);
 }
 
 TPersonasABB mayoresTPersonasABB(TPersonasABB personasABB, nat edad) {
@@ -175,18 +184,18 @@ TPersonasABB mayoresTPersonasABB(TPersonasABB personasABB, nat edad) {
     return mayoresABB;
 }
 
-TPersonasLDE aTPersonasLDE(TPersonasABB personasABB) {
-    TPersonasLDE nuevaLista = crearTPersonasLDE();
-
+void aplanarEnListaLDE(TPersonasABB personasABB, TPersonasLDE listaLDE) {
     if (personasABB == NULL) {
-        return nuevaLista;
+        return;
     }
 
-    insertarTPersonasLDE(nuevaLista, copiarTPersona(personasABB->persona), 1);
+    aplanarEnListaLDE(personasABB->der, listaLDE);
+    insertarTPersonasLDE(listaLDE, copiarTPersona(personasABB->persona), 1);
+    aplanarEnListaLDE(personasABB->izq, listaLDE);
+}
 
-    TPersonasLDE listaIzq = aTPersonasLDE(personasABB->izq);
-    TPersonasLDE listaDer = aTPersonasLDE(personasABB->der);
-
-    nuevaLista = concatenarTPersonasLDE(listaIzq, listaDer);
+TPersonasLDE aTPersonasLDE(TPersonasABB personasABB) {
+    TPersonasLDE nuevaLista = crearTPersonasLDE();
+    aplanarEnListaLDE(personasABB, nuevaLista);
     return nuevaLista;
 }
