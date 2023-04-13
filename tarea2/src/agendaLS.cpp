@@ -33,7 +33,7 @@ void agregarEnAgendaLS(TAgendaLS &agenda, TEvento evento) {
 
         return;
     }
-    
+
     TAgendaLS anteriorAux = agenda;
     TAgendaLS punteroAux = agenda->sig;
 
@@ -44,7 +44,7 @@ void agregarEnAgendaLS(TAgendaLS &agenda, TEvento evento) {
         return;
     }
 
-    // Recorrida en la lista 
+    // Recorrida en la lista
     while (punteroAux != NULL && compararTFechas(fechaTEvento(evento), fechaTEvento(punteroAux->evento)) == 1) {
         punteroAux = punteroAux->sig;
         anteriorAux = anteriorAux->sig;
@@ -129,7 +129,7 @@ bool estaEnAgendaLS(TAgendaLS agenda, int id) {
     while (agenda != NULL && idTEvento(agenda->evento) != id) {
         agenda = agenda->sig;
     }
-    
+
     return agenda != NULL;
 }
 
@@ -169,7 +169,7 @@ void imprimirEventosFechaLS(TAgendaLS agenda, TFecha fecha) {
         agenda = agenda->sig;
     }
 
-    // Imprime todos los eventos que tengan esa fecha 
+    // Imprime todos los eventos que tengan esa fecha
     while (agenda != NULL && compararTFechas(fechaTEvento(agenda->evento), fecha) == 0) {
         imprimirTEvento(agenda->evento);
         agenda = agenda->sig;
@@ -211,7 +211,7 @@ void removerDeAgendaLS(TAgendaLS &agenda, int id) {
         punteroAux = punteroAux->sig;
     }
 
-    // Se elimina el evento 
+    // Se elimina el evento
     liberarTEvento(punteroAux->evento);
     punteroAux = punteroAux->sig;
     delete punteroAnteriorAux->sig;

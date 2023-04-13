@@ -76,7 +76,7 @@ bool esPerfectoTPersonasABB(TPersonasABB personasABB);
 // El árbol retornado NO comparte memoria con el árbol pasado por parámetro.
 // En caso de que deba elegir un nuevo nodo como raíz seleccione el nodo con el id más grande del 
 // subárbol izquierdo.
-// La funcion es Theta(n) peor caso, siendo n la cantidad de personas en el árbol binario
+// La funcion es O(n*m) peor caso, donde n es la cantidad de personas en el árbol y m es la cantidad de eventos de la agenda con mas eventos entre todas las personas del árbol.
 TPersonasABB mayoresTPersonasABB(TPersonasABB personasABB, nat edad);
 
 // Función que retorna una lista de tipo TPersonasLDE con las personas que están en el árbol pasado por parámetro

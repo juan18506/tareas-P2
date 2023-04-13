@@ -1,5 +1,4 @@
 #include "../include/personasABB.h"
-#include <math.h>
 
 struct rep_personasAbb {
     rep_personasAbb *izq;
@@ -12,7 +11,7 @@ TPersonasABB crearTPersonasABB() {
     return nuevoArbol;
 }
 
-bool esVacioTPersonasABB(TPersonasABB personasABB) { 
+bool esVacioTPersonasABB(TPersonasABB personasABB) {
     return personasABB == NULL;
 }
 
@@ -60,8 +59,8 @@ void imprimirTPersonasABB(TPersonasABB personasABB) {
 nat cantidadTPersonasABB(TPersonasABB personasABB) {
     if (personasABB == NULL) {
         return 0;
-    }    
-    
+    }
+
     return 1 + cantidadTPersonasABB(personasABB->izq) + cantidadTPersonasABB(personasABB->der);
 }
 
@@ -108,7 +107,7 @@ bool estaTPersonasABB(TPersonasABB personasABB, nat id) {
             personasABB = personasABB->der;
         }
     }
-    
+
     return personasABB != NULL;
 }
 
@@ -120,7 +119,7 @@ TPersona obtenerDeTPersonasABB(TPersonasABB personasABB, nat id) {
             personasABB = personasABB->der;
         }
     }
-    
+
     return personasABB->persona;
 }
 
@@ -139,6 +138,18 @@ nat alturaTPersonasABB(TPersonasABB personasABB) {
     }
 }
 
+// Funcion auxiliar que calcula las potencias de 2
+nat potenciasDeDos(nat pot) {
+    nat resultado = 1;
+
+
+    for (nat i = 0; i < pot; i++) {
+        resultado *= 2;
+    }
+
+    return resultado;
+}
+
 bool esPerfectoTPersonasABB(TPersonasABB personasABB) {
     if (personasABB == NULL || (personasABB->der == NULL && personasABB->izq == NULL)) {
         return true;
@@ -148,7 +159,7 @@ bool esPerfectoTPersonasABB(TPersonasABB personasABB) {
     nat alturaDer = alturaTPersonasABB(personasABB->der);
     nat nodos = cantidadTPersonasABB(personasABB);
 
-    return (alturaIzq == alturaDer) && (pow(2, alturaIzq + 1) - 1 == nodos);
+    return (alturaIzq == alturaDer) && (potenciasDeDos(alturaIzq + 1) - 1 == nodos);
 }
 
 TPersonasABB mayoresTPersonasABB(TPersonasABB personasABB, nat edad) {

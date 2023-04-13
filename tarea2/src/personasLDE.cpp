@@ -25,7 +25,7 @@ void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos){
     rep_nodosLDE *personaAux = NULL;
     rep_nodosLDE *punteroAux = personas->inicio;
     nat contador = 0;
-
+    // Casos donde se tiene que insertar en la primera posicion | lista vacia / lista con elementos
     if (personas->inicio == NULL) {
         personas->inicio = new rep_nodosLDE;
         personas->inicio->ant = NULL;
@@ -45,6 +45,7 @@ void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos){
         return;
     }
 
+    // Avanza hasta la posicion donde hay que insertar el elemento
     while (punteroAux->sig != NULL && contador < pos - 2) {
         punteroAux = punteroAux->sig;
         contador++;
@@ -62,6 +63,7 @@ void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos){
         return;
     }
 
+    // Inserta el elemento en la lista
     personaAux = new rep_nodosLDE;
     personaAux->ant = punteroAux;
     personaAux->persona = persona;
@@ -100,10 +102,12 @@ nat cantidadTPersonasLDE(TPersonasLDE personas){
 }
 
 void eliminarInicioTPersonasLDE(TPersonasLDE &personas){
+    // Caso lista vacia
     if (personas->inicio == NULL) {
         return;
     }
 
+    // Caso lista con 1 elemento
     if (personas->inicio->sig == NULL) {
         liberarTPersona(personas->inicio->persona);
         delete personas->inicio;
@@ -122,10 +126,12 @@ void eliminarInicioTPersonasLDE(TPersonasLDE &personas){
 }
 
 void eliminarFinalTPersonasLDE(TPersonasLDE &personas){
+    // Caso lista vacia
     if (personas->inicio == NULL) {
         return;
     }
 
+    // Caso lista con 1 elemento
     if (personas->inicio->sig == NULL) {
         liberarTPersona(personas->inicio->persona);
         delete personas->inicio;
@@ -146,10 +152,11 @@ void eliminarFinalTPersonasLDE(TPersonasLDE &personas){
 bool estaEnTPersonasLDE(TPersonasLDE personas, nat id){
     rep_nodosLDE *punteroAux = personas->inicio;
 
+    // Recorre la lista hasta que encuentra el id o llega al ultimo elemento
     while (punteroAux != NULL && idTPersona(punteroAux->persona) != id) {
         punteroAux = punteroAux->sig;
     }
-    
+
     return punteroAux != NULL;
 }
 
@@ -165,7 +172,8 @@ TPersona obtenerDeTPersonasLDE(TPersonasLDE personas, nat id){
 
 TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE personas2){
     TPersonasLDE personas = personas1;
-    
+
+    // Caso lista 2 vacia
     if (personas2->inicio == NULL) {
         personas->cantidad += personas2->cantidad;
         personas2->inicio = NULL;
@@ -174,6 +182,7 @@ TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE persona
         return personas;
     }
 
+    // Caso lista 1 vacia
     if (personas1->inicio == NULL) {
         personas = personas2;
         personas->cantidad += personas1->cantidad;
