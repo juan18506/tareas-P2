@@ -159,6 +159,7 @@ bool esPerfectoTPersonasABB(TPersonasABB personasABB) {
     nat alturaDer = alturaTPersonasABB(personasABB->der);
     nat nodos = cantidadTPersonasABB(personasABB);
 
+    // Un ABB perfecto de altura h tiene (2^(h+1) - 1) nodos
     return (alturaIzq == alturaDer) && (potenciasDeDos(alturaIzq + 1) - 1 == nodos);
 }
 
