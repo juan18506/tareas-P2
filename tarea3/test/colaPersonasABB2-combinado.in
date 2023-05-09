@@ -1,0 +1,105 @@
+crearCola
+
+imprimirCantidadCola
+
+crearArbolPersonas
+
+# Encolo el arbol vacio
+encolar
+
+crearPersona 5 11 Maria
+insertarPersonaArbolPersonas
+
+crearPersona 4 55 Raul
+insertarPersonaArbolPersonas
+
+# Encola el arbol 
+encolar
+
+encolar
+encolar
+encolar
+
+imprimirCantidadCola
+
+# Obtengo el frente de la cola
+obtenerFrenteCola
+
+# Elimino de la Cola el Arbol con Persona 4 y 5
+desencolar
+
+imprimirCantidadCola
+
+# Obtengo el frente de la cola
+obtenerFrenteCola
+
+# Elimino de la Cola el Arbol vacio
+desencolar
+
+imprimirCantidadCola
+
+# Obtengo el frente de la cola
+obtenerFrenteCola
+
+# Elimino de la Cola el Arbol con Persona 1
+desencolar
+
+imprimirCantidadCola
+
+liberarCola
+
+liberarArbolPersonas
+
+crearCola
+
+# Creo arbol con Persona 2
+crearArbolPersonas
+
+crearPersona 2 56 Pablo
+insertarPersonaArbolPersonas
+
+# Encolo el arbol con Persona 2
+encolar
+
+imprimirCantidadCola
+
+# Obtengo el frente de la Cola
+obtenerFrenteCola
+
+# Elimino de la Cola el Arbol con Persona 2
+desencolar
+
+liberarCola
+
+liberarArbolPersonas
+
+crearCola
+
+# Creo arbol vacio
+crearArbolPersonas
+
+# Encolo el arbol vacio
+encolar
+
+imprimirCantidadCola
+
+encolar
+encolar
+encolar
+encolar
+encolar
+encolar
+encolar
+encolar
+encolar
+encolar
+encolar
+encolar
+
+imprimirCantidadCola
+
+liberarCola
+
+liberarArbolPersonas
+
+Fin

@@ -1,0 +1,29 @@
+1>2>La cantidad de arboles de personas en la cola es: 0.
+3>4>#  Encolo el arbol vacio.
+5>6>7>8>9>10>#  Encola el arbol .
+11>12>13>14>15>La cantidad de arboles de personas en la cola es: 5.
+16>#  Obtengo el frente de la cola.
+17>Arbol vacio
+18>#  Elimino de la Cola el Arbol con Persona 4 y 5.
+19>20>La cantidad de arboles de personas en la cola es: 4.
+21>#  Obtengo el frente de la cola.
+22>Persona 4:  Raul, 55 años
+Persona 5:  Maria, 11 años
+23>#  Elimino de la Cola el Arbol vacio.
+24>25>La cantidad de arboles de personas en la cola es: 3.
+26>#  Obtengo el frente de la cola.
+27>Persona 4:  Raul, 55 años
+Persona 5:  Maria, 11 años
+28>#  Elimino de la Cola el Arbol con Persona 1.
+29>30>La cantidad de arboles de personas en la cola es: 2.
+31>32>33>34>#  Creo arbol con Persona 2.
+35>36>37>38>#  Encolo el arbol con Persona 2.
+39>40>La cantidad de arboles de personas en la cola es: 1.
+41>#  Obtengo el frente de la Cola.
+42>Persona 2:  Pablo, 56 años
+43>#  Elimino de la Cola el Arbol con Persona 2.
+44>45>46>47>48>#  Creo arbol vacio.
+49>50>#  Encolo el arbol vacio.
+51>52>La cantidad de arboles de personas en la cola es: 1.
+53>54>55>56>57>58>59>60>61>62>63>64>65>La cantidad de arboles de personas en la cola es: 13.
+66>67>68>Fin.

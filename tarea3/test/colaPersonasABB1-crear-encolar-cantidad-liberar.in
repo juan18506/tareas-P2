@@ -1,0 +1,25 @@
+crearCola
+
+imprimirCantidadCola
+
+# Creo arbol con Persona 4 y 5
+crearArbolPersonas
+
+crearPersona 5 11 Maria
+insertarPersonaArbolPersonas
+
+crearPersona 4 55 Raul
+insertarPersonaArbolPersonas
+
+# Encolo el arbol con Persona 4 y 5
+encolar
+
+imprimirCantidadCola
+
+liberarCola
+
+imprimirArbolPersonas
+
+liberarArbolPersonas
+
+Fin
