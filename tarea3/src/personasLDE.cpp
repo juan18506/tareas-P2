@@ -214,20 +214,53 @@ TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE persona
 /////////////  NUEVAS FUNCIONES  //////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
+void insertarEnListaVaciaLDE(TPersonasLDE &personas, TPersona persona) {
+    personas->inicio = new rep_nodosLDE;
+    personas->inicio->ant = NULL;
+    personas->inicio->sig = NULL;
+    personas->inicio->persona = persona;
+    personas->final = personas->inicio;
+    personas->cantidad++;
+}
+
 void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
-    
+    if (personas->cantidad == 0) {
+        insertarEnListaVaciaLDE(personas, persona);
+        return;
+    }
+
+    rep_nodosLDE *personaAux = NULL;
+    personaAux = new rep_nodosLDE;
+    personaAux->ant = NULL;
+    personaAux->persona = persona;
+    personaAux->sig = personas->inicio;
+    personas->inicio->ant = personaAux;
+    personas->inicio = personaAux;
+    personas->cantidad++;
 }
 
 void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){    
+    if (personas->cantidad == 0) {
+        insertarEnListaVaciaLDE(personas, persona);
+        return;
+    }
 
+    rep_nodosLDE *personaAux = NULL;
+    personaAux = new rep_nodosLDE;
+    personaAux->ant = personas->final;
+    personaAux->persona = persona;
+    personaAux->sig = NULL;
+    personas->final->sig = personaAux;
+    personas->final = personaAux;
+    personas->cantidad++;
 }
 
 TPersona obtenerInicioDeTPersonasLDE(TPersonasLDE personas){
-    return NULL;
+    return personas->inicio->persona;
 }
 
 TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas){
-    return NULL;
+    return personas->final->persona;
 }
 
 ///////////////////////////////////////////////////////////////////////////
