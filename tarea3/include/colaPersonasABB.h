@@ -23,7 +23,7 @@ typedef struct rep_colaPersonasABB *TColaPersonasABB;
 TColaPersonasABB crearTColaPersonasABB();
 
 // Libera la memoria asignada a 'c' y la de todos sus elementos pero sin liberar la memoria de los elementos de tipo TPersonasABB incluidos.
-// La función es O(n*m) peor caso, donde n es la cantidad de personas en la cola y m es la cantidad de eventos de la agenda con mas eventos entre todas las personas de la cola.
+// La función es Theta(n) peor caso, donde n es la cantidad de personas en la cola.
 void liberarTColaPersonasABB(TColaPersonasABB &c);
 
 // Devuelve la cantidad de elementos en 'c'.
@@ -42,7 +42,7 @@ TPersonasABB frenteDeTColaPersonasABB(TColaPersonasABB c);
 // Remueve de 'c' su elemento más antiguo.
 // Se libera la memoria asignada al elemento de la cola pero sin liberar la memoria del elemento de tipo TPersonasABB incluido.
 // Precondición: cantidadEnCola(c) > 0.
-// La función es Theta(m) peor caso, donde m es la cantidad de eventos de la agenda de la persona que se desencola.
+// La función es Theta(1) peor caso.
 void desencolarDeTColaPersonasABB(TColaPersonasABB &c);
 
 #endif

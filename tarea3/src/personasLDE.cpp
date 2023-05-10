@@ -214,44 +214,35 @@ TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE persona
 /////////////  NUEVAS FUNCIONES  //////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
-void insertarEnListaVaciaLDE(TPersonasLDE &personas, TPersona persona) {
-    personas->inicio = new rep_nodosLDE;
-    personas->inicio->ant = NULL;
-    personas->inicio->sig = NULL;
-    personas->inicio->persona = persona;
-    personas->final = personas->inicio;
-    personas->cantidad++;
-}
-
 void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
+    rep_nodosLDE * nuevo = new rep_nodosLDE;
+    nuevo->persona = persona;
+    nuevo->ant = NULL;
+    nuevo->sig = personas->inicio;
+    personas->inicio = nuevo;
+
     if (personas->cantidad == 0) {
-        insertarEnListaVaciaLDE(personas, persona);
-        return;
+        personas->final = personas->inicio;
+    } else {
+        personas->inicio->sig->ant = personas->inicio;
     }
 
-    rep_nodosLDE *personaAux = NULL;
-    personaAux = new rep_nodosLDE;
-    personaAux->ant = NULL;
-    personaAux->persona = persona;
-    personaAux->sig = personas->inicio;
-    personas->inicio->ant = personaAux;
-    personas->inicio = personaAux;
     personas->cantidad++;
 }
 
-void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){    
+void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
+    rep_nodosLDE * nuevo = new rep_nodosLDE;
+    nuevo->persona = persona;
+    nuevo->ant = personas->final;
+    nuevo->sig = NULL;
+    personas->final = nuevo;
+
     if (personas->cantidad == 0) {
-        insertarEnListaVaciaLDE(personas, persona);
-        return;
+        personas->inicio = personas->final;
+    } else {
+        personas->final->ant->sig = personas->final;
     }
 
-    rep_nodosLDE *personaAux = NULL;
-    personaAux = new rep_nodosLDE;
-    personaAux->ant = personas->final;
-    personaAux->persona = persona;
-    personaAux->sig = NULL;
-    personas->final->sig = personaAux;
-    personas->final = personaAux;
     personas->cantidad++;
 }
 
