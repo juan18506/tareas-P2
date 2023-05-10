@@ -215,7 +215,8 @@ TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE persona
 ///////////////////////////////////////////////////////////////////////////
 
 void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
-    rep_nodosLDE * nuevo = new rep_nodosLDE;
+    rep_nodosLDE * nuevo = NULL;
+    nuevo = new rep_nodosLDE;
     nuevo->persona = persona;
     nuevo->ant = NULL;
     nuevo->sig = personas->inicio;
@@ -231,7 +232,8 @@ void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
 }
 
 void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
-    rep_nodosLDE * nuevo = new rep_nodosLDE;
+    rep_nodosLDE * nuevo = NULL;
+    nuevo = new rep_nodosLDE;
     nuevo->persona = persona;
     nuevo->ant = personas->final;
     nuevo->sig = NULL;
