@@ -239,12 +239,12 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
         personasABB = frenteDeTColaPersonasABB(cola);
 
         if (!esVacioTPersonasABB(personasABB->izq)) {
-            encolarEnTColaPersonasABB(personasABB->izq);
+            encolarEnTColaPersonasABB(personasABB->izq, cola);
             contador++;
         }
 
         if (!esVacioTPersonasABB(personasABB->der)) {
-            encolarEnTColaPersonasABB(personasABB->der);
+            encolarEnTColaPersonasABB(personasABB->der, cola);
             contador++;
         }
 
