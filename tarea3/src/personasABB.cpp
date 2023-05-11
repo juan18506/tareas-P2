@@ -252,7 +252,7 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
             contadorNodosNivel++;
         }
 
-        if (nodosNivelAnterior == nodosRecorridos && contador > maximoNodosNivel) {
+        if (nodosNivelAnterior == nodosRecorridos && contadorNodosNivel > maximoNodosNivel) {
             maximoNodosNivel = contadorNodosNivel;
         } 
         
