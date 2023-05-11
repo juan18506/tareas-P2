@@ -298,7 +298,6 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
         desapilarDeTPilaPersona(pilaAlReves);
     }
     
-    delete pilaAlReves;
     liberarTColaPersonasABB(cola);
     return pila;
 }
