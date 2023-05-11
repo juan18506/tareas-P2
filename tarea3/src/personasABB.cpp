@@ -257,14 +257,14 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
         } 
         
         if (nodosNivelAnterior == nodosRecorridos) {
-            contador = 0;
+            contadorNodosNivel = 0;
         }
 
         desencolarDeTColaPersonasABB(cola);
     }
 
     liberarTColaPersonasABB(cola);
-    return maximo;
+    return maximoNodosNivel;
 }
 
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
