@@ -294,7 +294,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
     }
 
     while (cantidadEnTPilaPersona(pilaAlReves) > 0) {
-        apilarEnTPilaPersona(cimaDeTPilaPersona(pilaAlReves));
+        apilarEnTPilaPersona(pila, cimaDeTPilaPersona(pilaAlReves));
         desapilarDeTPilaPersona(pilaAlReves);
     }
     
