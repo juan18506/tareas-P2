@@ -270,7 +270,30 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
 }
 
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
-    return NULL;
+    TColaPersonasABB cola = crearTColaPersonasABB();
+    TPilaPersona p = crearTPilaPersona();
+
+    if (!esVacioTPersonasABB(personasABB)) {
+        encolarEnTColaPersonasABB(personasABB, cola);
+    }
+
+    while (cantidadEnTColaPersonasABB(cola) > 0) {
+        personasABB = frenteDeTColaPersonasABB(cola);
+        apilarEnTPilaPersona(p, copiarTPersona(personasABB->persona));
+
+        if (!esVacioTPersonasABB(personasABB->izq)) {
+            encolarEnTColaPersonasABB(personasABB->izq, cola);
+        }
+
+        if (!esVacioTPersonasABB(personasABB->der)) {
+            encolarEnTColaPersonasABB(personasABB->der, cola);
+        }
+
+        desencolarDeTColaPersonasABB(cola);
+    }
+
+    liberarTColaPersonasABB(cola);
+    return p;
 }
 
 TPersonasABB deserializarTPersonasABB(TPilaPersona pilaPersonas) {
@@ -280,4 +303,3 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona pilaPersonas) {
 ///////////////////////////////////////////////////////////////////////////
 /////////////  FIN NUEVAS FUNCIONES  //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
-
