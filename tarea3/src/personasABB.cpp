@@ -229,7 +229,7 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
     TColaPersonasABB cola = crearTColaPersonasABB();
     nat contadorNodosNivel = 0;
     nat nodosNivelAnterior = 0;
-    nat nodosRecorridos = 0;
+    nat nodosRecorridosNivel = 0;
     nat maximoNodosNivel = 0;
 
     if (!esVacioTPersonasABB(personasABB)) {
@@ -240,7 +240,7 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
 
     while (cantidadEnTColaPersonasABB(cola) > 0) {
         personasABB = frenteDeTColaPersonasABB(cola);
-        nodosRecorridos++;
+        nodosRecorridosNivel++;
 
         if (!esVacioTPersonasABB(personasABB->izq)) {
             encolarEnTColaPersonasABB(personasABB->izq, cola);
@@ -252,13 +252,14 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
             contadorNodosNivel++;
         }
 
-        if (nodosNivelAnterior == nodosRecorridos && contadorNodosNivel > maximoNodosNivel) {
+        if (nodosNivelAnterior == nodosRecorridosNivel && contadorNodosNivel > maximoNodosNivel) {
             maximoNodosNivel = contadorNodosNivel;
         } 
         
-        if (nodosNivelAnterior == nodosRecorridos) {
+        if (nodosNivelAnterior == nodosRecorridosNivel) {
             nodosNivelAnterior = contadorNodosNivel;
             contadorNodosNivel = 0;
+            nodosRecorridosNivel = 0;
         }
 
         desencolarDeTColaPersonasABB(cola);
