@@ -8,7 +8,7 @@ struct rep_nodoCola {
 struct rep_colaPersonasABB {
   rep_nodoCola * inicio;
   rep_nodoCola * final;
-  unsigned int cantidad;
+  nat cantidad;
 };
 
 TColaPersonasABB crearTColaPersonasABB() {

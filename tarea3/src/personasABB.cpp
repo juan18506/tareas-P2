@@ -280,7 +280,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
 
     while (cantidadEnTColaPersonasABB(cola) > 0) {
         personasABB = frenteDeTColaPersonasABB(cola);
-        apilarEnTPilaPersona(pilaAlReves, copiarTPersona(personasABB->persona));
+        apilarEnTPilaPersona(pilaAlReves, personasABB->persona);
 
         if (!esVacioTPersonasABB(personasABB->izq)) {
             encolarEnTColaPersonasABB(personasABB->izq, cola);
@@ -299,6 +299,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
     }
     
     liberarTColaPersonasABB(cola);
+    liberarTPilaPersona(pilaAlReves);
     return pila;
 }
 
