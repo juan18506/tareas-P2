@@ -257,6 +257,7 @@ nat amplitudTPersonasABB(TPersonasABB personasABB) {
         } 
         
         if (nodosNivelAnterior == nodosRecorridos) {
+            nodosNivelAnterior = contadorNodosNivel;
             contadorNodosNivel = 0;
         }
 
