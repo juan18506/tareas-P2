@@ -1,4 +1,5 @@
 #include "../include/personasABB.h"
+#include "../include/colaPersonasABB.h"
 
 ///////////////////////////////////
 ////// PEGAR CÓDIGO TAREA 2 //////
@@ -225,7 +226,38 @@ TPersonasLDE aTPersonasLDE(TPersonasABB personasABB) {
 ///////////////////////////////////////////////////////////////////////////
 
 nat amplitudTPersonasABB(TPersonasABB personasABB) {
-    return 0;
+    TColaPersonasABB cola = crearTColaPersonasABB();
+    nat contador = 0;
+    nat maximo = 0;
+
+    if (!esVacioTPersonasABB(personasABB)) {
+        encolarEnTColaPersonasABB(personasABB, cola);
+        maximo++;
+    }
+
+    while (cantidadEnTColaPersonasABB(cola) > 0) {
+        personasABB = frenteDeTColaPersonasABB(cola);
+
+        if (!esVacioTPersonasABB(personasABB->izq)) {
+            encolarEnTColaPersonasABB(personasABB->izq);
+            contador++;
+        }
+
+        if (!esVacioTPersonasABB(personasABB->der)) {
+            encolarEnTColaPersonasABB(personasABB->der);
+            contador++;
+        }
+
+        if (contador > maximo) {
+            maximo = contador;
+        }
+
+        contador = 0;
+        desencolarDeTColaPersonasABB(cola);
+    }
+
+    liberarTColaPersonasABB(cola);
+    return maximo;
 }
 
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
