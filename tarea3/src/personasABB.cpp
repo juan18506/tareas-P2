@@ -227,32 +227,39 @@ TPersonasLDE aTPersonasLDE(TPersonasABB personasABB) {
 
 nat amplitudTPersonasABB(TPersonasABB personasABB) {
     TColaPersonasABB cola = crearTColaPersonasABB();
-    nat contador = 0;
-    nat maximo = 0;
+    nat contadorNodosNivel = 0;
+    nat nodosNivelAnterior = 0;
+    nat nodosRecorridos = 0;
+    nat maximoNodosNivel = 0;
 
     if (!esVacioTPersonasABB(personasABB)) {
         encolarEnTColaPersonasABB(personasABB, cola);
-        maximo++;
+        nodosNivelAnterior++;
+        maximoNodosNivel++;
     }
 
     while (cantidadEnTColaPersonasABB(cola) > 0) {
         personasABB = frenteDeTColaPersonasABB(cola);
+        nodosRecorridos++;
 
         if (!esVacioTPersonasABB(personasABB->izq)) {
             encolarEnTColaPersonasABB(personasABB->izq, cola);
-            contador++;
+            contadorNodosNivel++;
         }
 
         if (!esVacioTPersonasABB(personasABB->der)) {
             encolarEnTColaPersonasABB(personasABB->der, cola);
-            contador++;
+            contadorNodosNivel++;
         }
 
-        if (contador > maximo) {
-            maximo = contador;
+        if (nodosNivelAnterior == nodosRecorridos && contador > maximoNodosNivel) {
+            maximoNodosNivel = contadorNodosNivel;
+        } 
+        
+        if (nodosNivelAnterior == nodosRecorridos) {
+            contador = 0;
         }
 
-        contador = 0;
         desencolarDeTColaPersonasABB(cola);
     }
 
