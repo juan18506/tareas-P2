@@ -294,12 +294,12 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
     }
 
     while (cantidadEnTPilaPersona(pilaAlReves) > 0) {
-        apilarEnTPilaPersona(pila, cimaDeTPilaPersona(pilaAlReves));
+        apilarEnTPilaPersona(cimaDeTPilaPersona(pilaAlReves));
         desapilarDeTPilaPersona(pilaAlReves);
     }
-
+    
+    delete pilaAlReves;
     liberarTColaPersonasABB(cola);
-    liberarTPilaPersona(pilaAlReves);
     return pila;
 }
 
