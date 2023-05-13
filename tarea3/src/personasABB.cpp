@@ -144,6 +144,7 @@ nat alturaTPersonasABB(TPersonasABB personasABB) {
 }
 
 // Funcion auxiliar que calcula las potencias de 2
+// O(n) peor caso
 nat potenciasDeDos(nat pot) {
     nat resultado = 1;
 
@@ -304,7 +305,15 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
 }
 
 TPersonasABB deserializarTPersonasABB(TPilaPersona pilaPersonas) {
-    return NULL;
+    TPersonasABB arbol = crearTPersonasABB();
+    
+    while (cantidadEnTPilaPersona(pilaPersonas) > 0) {
+        insertarTPersonasABB(arbol, copiarTPersona(cimaDeTPilaPersona(pilaPersonas)));
+        desapilarDeTPilaPersona(pilaPersonas);
+    }
+    
+    liberarTPilaPersona(pilaPersonas);
+    return arbol;
 }
 
 ///////////////////////////////////////////////////////////////////////////
