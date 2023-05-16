@@ -35,6 +35,7 @@ bool sumaPares(nat k, TConjuntoIds c) {
 
     TConjuntoIds conjuntoMenoresQueK = crearTConjuntoIds(k);
     nat id = 1;
+    bool flag = false;
 
     while (id < k) {
         if (perteneceTConjuntoIds(id, c)) {
@@ -55,10 +56,11 @@ bool sumaPares(nat k, TConjuntoIds c) {
             }
 
             if (idI + idJ == k) {
-                return true;
+                flag = true;
             }
         }
     }
-
-    return false;
+    
+    liberarTConjuntoIds(conjuntoMenoresQueK);
+    return flag;
 }
