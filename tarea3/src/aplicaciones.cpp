@@ -29,5 +29,36 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista) {
 }
 
 bool sumaPares(nat k, TConjuntoIds c) {
+    if (esVacioTConjuntoIds(c)) {
+        return false;
+    }   
+
+    TConjuntoIds conjuntoMenoresQueK = crearTConjuntoIds(k);
+    nat id = 1;
+
+    while (id < k) {
+        if (perteneceTConjuntoIds(id)) {
+            insertarTConjuntoIds(id, conjuntoMenoresQueK);
+        }
+
+        id++;
+    }
+
+    for (nat idI = 1; idI < k; idI++) {
+        if (!perteneceTConjuntoIds(idI, conjuntoMenoresQueK)) {
+            continue;
+        }
+
+        for (nat idJ = 1; idJ < k; idJ++) {
+            if (!perteneceTConjuntoIds(idJ, conjuntoMenoresQueK)) {
+                continue;
+            }
+
+            if (idI + idJ == k) {
+                return true;
+            }
+        }
+    }
+
     return false;
 }
