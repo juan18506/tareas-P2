@@ -37,7 +37,7 @@ bool sumaPares(nat k, TConjuntoIds c) {
     nat id = 1;
 
     while (id < k) {
-        if (perteneceTConjuntoIds(id)) {
+        if (perteneceTConjuntoIds(id, c)) {
             insertarTConjuntoIds(id, conjuntoMenoresQueK);
         }
 
