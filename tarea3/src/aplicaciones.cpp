@@ -55,7 +55,7 @@ bool sumaPares(nat k, TConjuntoIds c) {
                 continue;
             }
 
-            if (idI + idJ == k) {
+            if (idI != idJ && idI + idJ == k) {
                 flag = true;
             }
         }
