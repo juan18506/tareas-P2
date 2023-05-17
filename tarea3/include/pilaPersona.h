@@ -33,7 +33,7 @@ nat cantidadEnTPilaPersona(TPilaPersona p);
 
 // Apila 'persona' en 'p'-
 // La TPilaPersona resultado no comparte memoria con 'persona'.
-// La funcion es Theta(1) peor caso.
+// La funcion es Theta(m) peor caso, donde m es la cantidad de eventos de la agenda de 'persona'.
 void apilarEnTPilaPersona(TPilaPersona &p, TPersona persona);
 
 // Devuelve el elemento más nuevo en 'p'.

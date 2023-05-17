@@ -17,7 +17,7 @@ Evento 1:  Descripcion uno
 Fecha: 19/4/2023
 Evento 2:  Descripcion dos
 Fecha: 20/4/2023
-29>30>#  imprime Persona 3.
+29>30>#  imprime Persona 1.
 31>Persona 1:  Persona1, 18 años
 Evento 1:  Descripcion uno
 Fecha: 18/4/2023
@@ -27,7 +27,7 @@ Evento 1:  Descripcion uno
 Fecha: 19/4/2023
 Evento 2:  Descripcion dos
 Fecha: 20/4/2023
-35>36>#  imprime Persona 1.
+35>36>#  imprime Persona 3.
 37>Persona 3:  Persona3, 25 años
 38>39>#  imprime la misma persona.
 40>Persona 3:  Persona3, 25 años

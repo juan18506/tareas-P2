@@ -13,13 +13,13 @@ insertarPersonaArbolPersonas
 crearPersona 1 1 Jose
 insertarPersonaArbolPersonas
 
-crearPersona 13 Pedro
+crearPersona 3 3 Pedro
 insertarPersonaArbolPersonas
 
 crearPersona 8 8 Ana
 insertarPersonaArbolPersonas
 
-crearPersona 6 6 
+crearPersona 6 6 Maria
 insertarPersonaArbolPersonas
 
 # La maxima amplitud es 3

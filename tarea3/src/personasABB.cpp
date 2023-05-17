@@ -304,7 +304,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
     return pila;
 }
 
-TPersonasABB deserializarTPersonasABB(TPilaPersona pilaPersonas) {
+TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas) {
     TPersonasABB arbol = crearTPersonasABB();
     
     while (cantidadEnTPilaPersona(pilaPersonas) > 0) {

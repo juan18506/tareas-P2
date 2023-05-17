@@ -34,12 +34,12 @@ bool esVacioTConjuntoIds(TConjuntoIds c);
 // Procedimiento para insertar el identificador "id" en el conjunto de ids "c"
 // Si "id" no pertenece al rango válido de ids del conjunto "c" la función no hace nada   
 // La función es Theta(1) peor caso
-void insertarTConjuntoIds(nat id, TConjuntoIds c); 
+void insertarTConjuntoIds(nat id, TConjuntoIds &c); 
 
 // Procedimiento para borrar al "id" del conjunto de ids "c"
 // Si "id" no pertenece al conjunto "c" la función no hace nada
 // La función es Theta(1) peor caso
-void borrarTConjuntoIds(nat id, TConjuntoIds c);
+void borrarTConjuntoIds(nat id, TConjuntoIds &c);
 
 // Función para determinar si el identificador "id" pertenece al conjunto "c"
 // Devuelve true si pertenece, false en otro caso
@@ -83,16 +83,5 @@ TConjuntoIds interseccionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2);
 // Ambos conjuntos tienen la misma cantidad máxima de elementos, "n"
 // La función es Theta(n) peor caso
 TConjuntoIds diferenciaTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2);
-
-
-
-
-
-//------------------------ POSIBLES APLICACIONES ------------------------
-
-// Función que determina si hay un par de ids pertenecientes a "c" tales que su suma es igual a "k"
-// La función es Theta(n) peor caso, siendo "n" la cantidad máxima de elementos de "c"
-bool sumaPares(nat k, TConjuntoIds c);
-
 
 #endif  // CONJUNTOIDS_H

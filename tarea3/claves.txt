@@ -3,8 +3,8 @@
 cb58ec67377338668591ae95ca3f0fbbf06832d3  src/agendaLS.cpp
 a664c517712905eda011ceffdc1c00b9242e65f1  src/persona.cpp
 6cafa7031635b7a9e0ce18f955f1f7d55ca077d0  src/personasLDE.cpp
-cbaa49a5346fd50343a85a587b2bda1296018430  src/personasABB.cpp
+fd6f6a55ca759273764b824a4f2f9db40f224ad3  src/personasABB.cpp
 14e2e2891fb0b5a35a781ea139abd3a25f6f8167  src/pilaPersona.cpp
 f8fc6c3f0e463e7df21284b571eff21d5dfa74bc  src/colaPersonasABB.cpp
-ae42d9dd6ae999d710fc269b1f347de27c98ba46  src/conjuntoIds.cpp
+41d3cec2d118c7ab2da20c7354b2cd7cc7ea2681  src/conjuntoIds.cpp
 b4e99f78273b5ac8a58097b408b6fb721bfada09  src/aplicaciones.cpp

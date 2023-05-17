@@ -25,14 +25,14 @@ bool esVacioTConjuntoIds(TConjuntoIds c){
 	return c->cantidad == 0;
 };
 
-void insertarTConjuntoIds(nat id, TConjuntoIds c){
+void insertarTConjuntoIds(nat id, TConjuntoIds &c){
 	if (0 < id && id <= c->cantidadMaxima && !c->setIds[id - 1]) {
 		c->setIds[id - 1] = true;
 		c->cantidad++;
 	}
 }; 
 
-void borrarTConjuntoIds(nat id, TConjuntoIds c){
+void borrarTConjuntoIds(nat id, TConjuntoIds &c){
   if (0 < id && id <= c->cantidadMaxima && c->setIds[id - 1]) {
 		c->setIds[id - 1] = false;
 		c->cantidad--;

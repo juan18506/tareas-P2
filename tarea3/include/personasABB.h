@@ -108,7 +108,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB t);
 // Las personas en el árbol resultado deben estar ordenadas de tal forma que si se serializa se obtiene la misma pila.
 // Los elementos del árbol no comparten memoria con la pila original y al final de la función la pila queda vacía y se libera. 
 // La funcion es O(n*m) peor caso, siendo n la cantidad de personas en la pila y m la cantidad de eventos de la agenda con mas eventos entre todas las personas de la pila.
-TPersonasABB deserializarTPersonasABB(TPilaPersona t);
+TPersonasABB deserializarTPersonasABB(TPilaPersona &t);
 
 ///////////////////////////////////////////////////////////////////////////
 /////////////  FIN NUEVAS FUNCIONES  //////////////////////////////////////

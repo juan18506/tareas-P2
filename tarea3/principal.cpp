@@ -131,7 +131,7 @@ void main_crearCola(TColaPersonasABB &colaPersonaABB);
 void main_liberarCola(TColaPersonasABB &colaPersonaABB);
 void main_cantidadEnCola(TColaPersonasABB &colaPersonaABB);
 void main_encolar(TColaPersonasABB &colaPersonaABB, TPersonasABB &arbolPersonas);
-void main_frente(TColaPersonasABB &colaPersonaABB);
+void main_frente(TColaPersonasABB &colaPersonaABB, TPersonasABB &arbolPersonas);
 void main_desencolar(TColaPersonasABB &colaPersonaABB);
 //Funciones para testear conjuntoIds
 void main_crearConjuntoIds(TConjuntoIds &conjuntoIds);
@@ -478,7 +478,7 @@ int main() {
             main_encolar(colaPersonaABB, arbolPersonas);
 
         } else if (cmd_es("obtenerFrenteCola", cmd)) {
-            main_frente(colaPersonaABB);
+            main_frente(colaPersonaABB, arbolPersonas);
 
         } else if (cmd_es("desencolar", cmd)) {
             main_desencolar(colaPersonaABB);
@@ -1259,13 +1259,14 @@ void main_cantidadEnCola(TColaPersonasABB &colaPersonaABB){
 void main_encolar(TColaPersonasABB &colaPersonaABB, TPersonasABB &arbolPersonas){
     assert (colaPersonaABB != NULL);
     encolarEnTColaPersonasABB(arbolPersonas, colaPersonaABB);
+    arbolPersonas = NULL; // se pierde la referencia al árbol, pero queda almacenado en la cola
 }
 
-void main_frente(TColaPersonasABB &colaPersonaABB){
+void main_frente(TColaPersonasABB &colaPersonaABB, TPersonasABB &arbolPersonas){
     assert (colaPersonaABB != NULL);
-    TPersonasABB personaABB = frenteDeTColaPersonasABB(colaPersonaABB);
-    if(personaABB != NULL){
-        imprimirTPersonasABB(personaABB);
+    arbolPersonas = frenteDeTColaPersonasABB(colaPersonaABB); // recupero la referencia al arbol. debo encargarme de liberarlo
+    if(!esVacioTPersonasABB(arbolPersonas)){
+        imprimirTPersonasABB(arbolPersonas);
     }else{
         printf("Arbol vacio\n");
     }
