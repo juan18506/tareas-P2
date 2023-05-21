@@ -222,6 +222,7 @@ void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
     nuevo->sig = personas->inicio;
     personas->inicio = nuevo;
 
+    // Lista vacia / no vacia
     if (personas->cantidad == 0) {
         personas->final = personas->inicio;
     } else {
@@ -239,6 +240,7 @@ void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
     nuevo->sig = NULL;
     personas->final = nuevo;
 
+    // Lista vacia / no vacia
     if (personas->cantidad == 0) {
         personas->inicio = personas->final;
     } else {

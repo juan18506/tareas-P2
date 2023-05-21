@@ -14,6 +14,7 @@ TConjuntoIds crearTConjuntoIds(nat cantMax){
 	conjuntoIds->cantidadMaxima = cantMax;
 	conjuntoIds->cantidad = 0;
 
+	// Inicialización de setIds
 	for (nat id = 1; id <= cantMax; id++) {
 		conjuntoIds->setIds[id - 1] = false;	
 	}
@@ -26,6 +27,7 @@ bool esVacioTConjuntoIds(TConjuntoIds c){
 };
 
 void insertarTConjuntoIds(nat id, TConjuntoIds &c){
+	// El id no esta en setIds y 0 < id <= cantidadMaxima
 	if (0 < id && id <= c->cantidadMaxima && !c->setIds[id - 1]) {
 		c->setIds[id - 1] = true;
 		c->cantidad++;
@@ -33,6 +35,7 @@ void insertarTConjuntoIds(nat id, TConjuntoIds &c){
 }; 
 
 void borrarTConjuntoIds(nat id, TConjuntoIds &c){
+	// El id esta en setIds y 0 < id <= cantidadMaxima
   if (0 < id && id <= c->cantidadMaxima && c->setIds[id - 1]) {
 		c->setIds[id - 1] = false;
 		c->cantidad--;
@@ -40,6 +43,7 @@ void borrarTConjuntoIds(nat id, TConjuntoIds &c){
 };
 
 bool perteneceTConjuntoIds(nat id, TConjuntoIds c){
+	// El id esta en setIds y 0 < id <= cantidadMaxima
 	return 0 < id && id <= c->cantidadMaxima && c->setIds[id - 1];
 };
 
@@ -52,7 +56,9 @@ nat cantMaxTConjuntoIds(TConjuntoIds c){
 };
 
 void imprimirTConjuntoIds(TConjuntoIds c){
+	// Recorrida total de setIds
   for (nat id = 1; id <= c->cantidadMaxima; id++) {
+		// Si el id esta en setIds
 		if (c->setIds[id - 1]) {
 			printf("%u ", id);
 		}
@@ -73,6 +79,7 @@ void liberarTConjuntoIds(TConjuntoIds &c){
 TConjuntoIds unionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2){
 	TConjuntoIds unionIds = crearTConjuntoIds(c1->cantidadMaxima + c2->cantidadMaxima);
 
+	// Recorrida total de unionIds
 	for (nat id = 1; id <= unionIds->cantidadMaxima; id++) {
 		if (perteneceTConjuntoIds(id, c1) || perteneceTConjuntoIds(id, c2)) {
 			insertarTConjuntoIds(id, unionIds);
@@ -85,6 +92,7 @@ TConjuntoIds unionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2){
 TConjuntoIds interseccionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2){
 	TConjuntoIds interseccionIds = crearTConjuntoIds(c1->cantidadMaxima);
 
+	// Recorrida total de interseccionIds
 	for (nat id = 1; id <= interseccionIds->cantidadMaxima; id++) {
 		if (perteneceTConjuntoIds(id, c1) && perteneceTConjuntoIds(id, c2)) {
 			insertarTConjuntoIds(id, interseccionIds);
@@ -97,6 +105,7 @@ TConjuntoIds interseccionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2){
 TConjuntoIds diferenciaTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2){
 	TConjuntoIds diferenciaIds = crearTConjuntoIds(c1->cantidadMaxima);
 
+	// Recorrida total de diferenciaIds
 	for (nat id = 1; id <= diferenciaIds->cantidadMaxima; id++) {
 		if (perteneceTConjuntoIds(id, c1) && !perteneceTConjuntoIds(id, c2)) {
 			insertarTConjuntoIds(id, diferenciaIds);

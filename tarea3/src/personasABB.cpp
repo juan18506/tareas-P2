@@ -294,6 +294,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
         desencolarDeTColaPersonasABB(cola);
     }
 
+    // Da vuelta la pila 
     while (cantidadEnTPilaPersona(pilaAlReves) > 0) {
         apilarEnTPilaPersona(pila, cimaDeTPilaPersona(pilaAlReves));
         desapilarDeTPilaPersona(pilaAlReves);

@@ -2,9 +2,9 @@
 152fe03487dacc58f8a8896de3427a224791d3a7  src/evento.cpp
 cb58ec67377338668591ae95ca3f0fbbf06832d3  src/agendaLS.cpp
 a664c517712905eda011ceffdc1c00b9242e65f1  src/persona.cpp
-6cafa7031635b7a9e0ce18f955f1f7d55ca077d0  src/personasLDE.cpp
-fd6f6a55ca759273764b824a4f2f9db40f224ad3  src/personasABB.cpp
+64cdef62b6f230604f9634cc64aedc6a18173c18  src/personasLDE.cpp
+be144180379df0b94f11f8287fc761d84df35641  src/personasABB.cpp
 14e2e2891fb0b5a35a781ea139abd3a25f6f8167  src/pilaPersona.cpp
 f8fc6c3f0e463e7df21284b571eff21d5dfa74bc  src/colaPersonasABB.cpp
-41d3cec2d118c7ab2da20c7354b2cd7cc7ea2681  src/conjuntoIds.cpp
-b4e99f78273b5ac8a58097b408b6fb721bfada09  src/aplicaciones.cpp
+141f60b7231638088de6ccee1179db52973d7574  src/conjuntoIds.cpp
+4df36b54a49b3086c77c065bbf2184ba582f4190  src/aplicaciones.cpp

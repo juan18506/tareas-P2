@@ -11,6 +11,7 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista) {
     apilarEnTPilaPersona(pilaLista, obtenerFinalDeTPersonasLDE(lista));
     eliminarFinalTPersonasLDE(lista);
 
+    // Recorrida total de la lista
     while (cantidadTPersonasLDE(lista) > 0) {
         if (edadTPersona(cimaDeTPilaPersona(pilaLista)) > edadTPersona(obtenerFinalDeTPersonasLDE(lista))) {
             apilarEnTPilaPersona(pilaLista, obtenerFinalDeTPersonasLDE(lista));
@@ -19,6 +20,7 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista) {
         eliminarFinalTPersonasLDE(lista);
     }
 
+    // Da vuelta pilaLista en pilaResultado
     while (cantidadEnTPilaPersona(pilaLista) > 0) {
         apilarEnTPilaPersona(pilaResultado, cimaDeTPilaPersona(pilaLista));
         desapilarDeTPilaPersona(pilaLista);
