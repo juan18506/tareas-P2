@@ -259,15 +259,55 @@ TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas){
 ///////////////////////////////////////////////////////////////////////////
 
 void eliminarPersonaConNombreTPersonasLDE(TPersonasLDE &personas, const char nombre[100]){
-    
+    rep_nodosLDE * listaPersonas = personas->inicio;
+
+    // Caso 1er elemento a eliminar
+    if (strcmp(nombreTPersona(personas->inicio->persona), nombre) == 0) {
+        eliminarInicioTPersonasLDE(personas);
+        return;
+    }
+
+    // Caso Ultimo elemento a eliminar
+    if (strcmp(nombreTPersona(personas->final->persona), nombre) == 0) {
+        eliminarFinalTPersonasLDE(personas);
+        return;
+    }
+
+    // Otros casos
+    while(strcmp(nombreTPersona(listaPersonas->sig->persona), nombre) != 0) {
+        listaPersonas = listaPersonas->sig;
+    }
+
+    rep_nodosLDE * aBorrar = listaPersonas->sig;
+    listaPersonas->sig = aBorrar->sig;
+    aBorrar->sig->ant = aBorrar->ant;
+
+    liberarTPersona(aBorrar->persona);
+    delete aBorrar;
+    aBorrar = NULL;
+    personas->cantidad--;
 }
 
 bool estaPersonaConNombreEnTPersonasLDE(TPersonasLDE personas, const char nombre[100]){
-    return false;
+    bool estaPersona = false;
+    rep_nodosLDE * listaPersonas = personas->inicio;
+
+    while (listaPersonas != NULL && !estaPersona) {
+        estaPersona = strcmp(nombreTPersona(listaPersonas->persona), nombre) == 0;
+        listaPersonas = listaPersonas->sig;
+    }
+
+    return estaPersona;
 }
 
 TPersona obtenerPersonaConNombreTPersonasLDE(TPersonasLDE personas, const char nombre[100]){
-    return NULL;
+    rep_nodosLDE * listaPersonas = personas->inicio;
+
+    while (strcmp(nombreTPersona(listaPersonas->persona), nombre) != 0) {
+        listaPersonas = listaPersonas->sig;
+    }
+
+    return listaPersonas->persona;
 }
 
 ///////////////////////////////////////////////////////////////////////////
