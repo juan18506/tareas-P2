@@ -18,7 +18,7 @@
 
   Si la 'TColaDePrioridadPersona' no es vacía hay una persona considerada la
   prioritaria, según el criterio de prioridad. Si hay más de una persona con la
-  misma fecha la primer persona ingresada en la cola será la prioritaria.
+  misma fecha cualquiera de ellas es la prioritaria.
 
 
   Laboratorio de Programación 2.
