@@ -39,7 +39,27 @@ void filtrado_ascendente(nat pos, TColaDePrioridadPersona &cp) {
 }
 
 void filtrado_descendente(nat pos, TColaDePrioridadPersona &cp) {
+  cp->colaPrioridad[pos] = cp->colaPrioridad[cp->tope + 1];
+  nat posMenor = 0;
 
+  while (pos * 2 <= cp->tope) {
+    // hijo derecho > hijo izquierdo (prioridad)
+    if (pos * 2 + 1 <= cp->tope && compararTFechas(obtenerFechaPrioridad(cp->colaPrioridad[pos * 2 + 1]), obtenerFechaPrioridad(cp->colaPrioridad[pos * 2])) == -1) {
+      posMenor = pos * 2 + 1;
+    } else {
+      posMenor = pos * 2;
+    }
+    
+    // padre > hijo (prioridad)
+    if (compararTFechas(obtenerFechaPrioridad(cp->colaPrioridad[pos]), obtenerFechaPrioridad(cp->colaPrioridad[posMenor])) <= 0) {
+      return;
+    }
+
+    TPersona copiaPersonaOG = cp->colaPrioridad[pos];
+    cp->colaPrioridad[pos] = cp->colaPrioridad[posMenor];
+    cp->colaPrioridad[posMenor] = copiaPersonaOG;
+    pos = posMenor;
+  };
 }
 
 void invertirPrioridad(TColaDePrioridadPersona &cp) {
@@ -47,7 +67,6 @@ void invertirPrioridad(TColaDePrioridadPersona &cp) {
 }
 
 void liberarCP(TColaDePrioridadPersona &cp) {
-
   for (nat i = 1; i <= cp->tope; i++) {
     liberarTPersona(cp->colaPrioridad[i]);
   }
@@ -84,6 +103,12 @@ void eliminarPrioritaria(TColaDePrioridadPersona &cp) {
   if (estaVaciaCP(cp)) {
     return;
   }
+
+  cp->idPersonas[idTPersona(cp->colaPrioridad[1])] = NULL;
+  liberarTPersona(cp->colaPrioridad[1]);
+  cp->colaPrioridad[1] = NULL;
+  cp->tope--;
+  filtrado_descendente(1, cp);
 }
 
 bool estaEnCP(nat id, TColaDePrioridadPersona cp) {
@@ -91,7 +116,7 @@ bool estaEnCP(nat id, TColaDePrioridadPersona cp) {
     return false;
   }
 
-  return cp->idPersonas[id];
+  return cp->idPersonas[id] != NULL;
 }
 
 TFecha prioridad(nat id, TColaDePrioridadPersona cp) {
