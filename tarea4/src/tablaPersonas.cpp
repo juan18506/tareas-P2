@@ -5,7 +5,7 @@ struct rep_tablaPersonas {
     int cota;
 };
 
-nat funcionDeDispersion(const char nombre[100]){
+nat funcionDeDispersion(const char nombre[100]) {
     nat res = 0;
     int i = 0;
     while(i< 100 && nombre[i] != '\0'){
@@ -15,13 +15,14 @@ nat funcionDeDispersion(const char nombre[100]){
     return res;
 }
 
-TTablaPersonas crearTTablaPersonas(int max){
+TTablaPersonas crearTTablaPersonas(int max) {
     TTablaPersonas nuevaTabla = NULL;
     nuevaTabla = new rep_tablaPersonas;
 
     nuevaTabla->tabla = new TPersonasLDE[max];
     nuevaTabla->cota = max;
 
+    // Inicializacion
     for (int i = 0; i < max; i++) {
         nuevaTabla->tabla[i] = crearTPersonasLDE();
     }
@@ -29,13 +30,13 @@ TTablaPersonas crearTTablaPersonas(int max){
     return nuevaTabla;
 }
 
-void insertarPersonaEnTabla(TTablaPersonas &tabla, TPersona persona){
+void insertarPersonaEnTabla(TTablaPersonas &tabla, TPersona persona) {
     int posicion = funcionDeDispersion(nombreTPersona(persona)) % tabla->cota;
     insertarInicioDeTPersonasLDE(tabla->tabla[posicion], persona);
 }
 
 
-void eliminarPersonaDeTTablaPersonas(TTablaPersonas &tabla, const char nombre[100]){
+void eliminarPersonaDeTTablaPersonas(TTablaPersonas &tabla, const char nombre[100]) {
     int posicion = funcionDeDispersion(nombre) % tabla->cota;
     eliminarPersonaConNombreTPersonasLDE(tabla->tabla[posicion], nombre);
 }
@@ -46,14 +47,15 @@ bool perteneceATTablaPersonas(TTablaPersonas tabla, const char nombre[100]){
     return estaPersona;
 }
 
-TPersona obtenerPersonaDeTTablaPersonas(TTablaPersonas tabla, const char nombre[100]){
+TPersona obtenerPersonaDeTTablaPersonas(TTablaPersonas tabla, const char nombre[100]) {
     int posicion = funcionDeDispersion(nombre) % tabla->cota;
     TPersona personaBuscada = obtenerPersonaConNombreTPersonasLDE(tabla->tabla[posicion], nombre);
     return personaBuscada;
 }
 
 
-void liberarTTablaPersonas(TTablaPersonas &tabla){
+void liberarTTablaPersonas(TTablaPersonas &tabla) {
+    // Recorrida total de la tabla
     for (int i = 0; i < tabla->cota; i++) {
         liberarTPersonasLDE(tabla->tabla[i]);
     }
@@ -65,7 +67,8 @@ void liberarTTablaPersonas(TTablaPersonas &tabla){
 }
 
 
-void imprimirTTablaPersonas(TTablaPersonas tabla){
+void imprimirTTablaPersonas(TTablaPersonas tabla) {
+    // Recorrida total de la tabla
     for (int i = 0; i < tabla->cota; i++){
         imprimirTPersonasLDE(tabla->tabla[i]);
     }

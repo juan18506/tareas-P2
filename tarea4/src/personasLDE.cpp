@@ -16,7 +16,7 @@ struct rep_personasLDE {
     nat cantidad;
 };
 
-TPersonasLDE crearTPersonasLDE(){
+TPersonasLDE crearTPersonasLDE() {
     TPersonasLDE nuevaLista = new rep_personasLDE;
     nuevaLista->inicio = NULL;
     nuevaLista->final = NULL;
@@ -25,7 +25,7 @@ TPersonasLDE crearTPersonasLDE(){
     return nuevaLista;
 }
 
-void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos){
+void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos) {
     rep_nodosLDE *personaAux = NULL;
     rep_nodosLDE *punteroAux = personas->inicio;
     nat contador = 0;
@@ -77,7 +77,7 @@ void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos){
     personas->cantidad++;
 }
 
-void liberarTPersonasLDE(TPersonasLDE &personasLDE){
+void liberarTPersonasLDE(TPersonasLDE &personasLDE) {
     rep_nodosLDE *punteroAux = personasLDE->inicio;
     rep_nodosLDE *otroPunteroAux = personasLDE->inicio;
 
@@ -92,7 +92,7 @@ void liberarTPersonasLDE(TPersonasLDE &personasLDE){
     personasLDE = NULL;
 }
 
-void imprimirTPersonasLDE(TPersonasLDE personas){
+void imprimirTPersonasLDE(TPersonasLDE personas) {
     rep_nodosLDE *punteroAux = personas->inicio;
 
     while (punteroAux != NULL) {
@@ -101,11 +101,11 @@ void imprimirTPersonasLDE(TPersonasLDE personas){
     }
 }
 
-nat cantidadTPersonasLDE(TPersonasLDE personas){
+nat cantidadTPersonasLDE(TPersonasLDE personas) {
     return personas->cantidad;
 }
 
-void eliminarInicioTPersonasLDE(TPersonasLDE &personas){
+void eliminarInicioTPersonasLDE(TPersonasLDE &personas) {
     // Caso lista vacia
     if (personas->inicio == NULL) {
         return;
@@ -129,7 +129,7 @@ void eliminarInicioTPersonasLDE(TPersonasLDE &personas){
     personas->cantidad--;
 }
 
-void eliminarFinalTPersonasLDE(TPersonasLDE &personas){
+void eliminarFinalTPersonasLDE(TPersonasLDE &personas) {
     // Caso lista vacia
     if (personas->inicio == NULL) {
         return;
@@ -153,7 +153,7 @@ void eliminarFinalTPersonasLDE(TPersonasLDE &personas){
     personas->cantidad--;
 }
 
-bool estaEnTPersonasLDE(TPersonasLDE personas, nat id){
+bool estaEnTPersonasLDE(TPersonasLDE personas, nat id) {
     rep_nodosLDE *punteroAux = personas->inicio;
 
     // Recorre la lista hasta que encuentra el id o llega al ultimo elemento
@@ -164,9 +164,10 @@ bool estaEnTPersonasLDE(TPersonasLDE personas, nat id){
     return punteroAux != NULL;
 }
 
-TPersona obtenerDeTPersonasLDE(TPersonasLDE personas, nat id){
+TPersona obtenerDeTPersonasLDE(TPersonasLDE personas, nat id) {
     rep_nodosLDE *punteroAux = personas->inicio;
 
+    // Recorrida hasta encontrar el id
     while (idTPersona(punteroAux->persona) != id) {
         punteroAux = punteroAux->sig;
     }
@@ -174,7 +175,7 @@ TPersona obtenerDeTPersonasLDE(TPersonasLDE personas, nat id){
     return punteroAux->persona;
 }
 
-TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE personas2){
+TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE personas2) {
     TPersonasLDE personas = personas1;
 
     // Caso lista 2 vacia
@@ -206,7 +207,7 @@ TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE persona
     return personas;
 }
 
-void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
+void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona) {
     rep_nodosLDE * nuevo = NULL;
     nuevo = new rep_nodosLDE;
     nuevo->persona = persona;
@@ -224,7 +225,7 @@ void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
     personas->cantidad++;
 }
 
-void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
+void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona) {
     rep_nodosLDE * nuevo = NULL;
     nuevo = new rep_nodosLDE;
     nuevo->persona = persona;
@@ -242,11 +243,11 @@ void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
     personas->cantidad++;
 }
 
-TPersona obtenerInicioDeTPersonasLDE(TPersonasLDE personas){
+TPersona obtenerInicioDeTPersonasLDE(TPersonasLDE personas) {
     return personas->inicio->persona;
 }
 
-TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas){
+TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas) {
     return personas->final->persona;
 }
 
@@ -292,6 +293,7 @@ bool estaPersonaConNombreEnTPersonasLDE(TPersonasLDE personas, const char nombre
     bool estaPersona = false;
     rep_nodosLDE * listaPersonas = personas->inicio;
 
+    // Recorrida en la lista hasta encontrar la persona o llegar a NULL
     while (listaPersonas != NULL && !estaPersona) {
         estaPersona = strcmp(nombreTPersona(listaPersonas->persona), nombre) == 0;
         listaPersonas = listaPersonas->sig;
@@ -303,6 +305,7 @@ bool estaPersonaConNombreEnTPersonasLDE(TPersonasLDE personas, const char nombre
 TPersona obtenerPersonaConNombreTPersonasLDE(TPersonasLDE personas, const char nombre[100]){
     rep_nodosLDE * listaPersonas = personas->inicio;
 
+    // Recorrida hasta encontrar el nombre
     while (strcmp(nombreTPersona(listaPersonas->persona), nombre) != 0) {
         listaPersonas = listaPersonas->sig;
     }

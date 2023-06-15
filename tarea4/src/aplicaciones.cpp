@@ -4,7 +4,9 @@
 void listarEnOrden(TTablaPersonas t, char **nombres, nat n) {
     TColaDePrioridadPersona cp = crearCP(MAX_ID);
 
+    // Recorrida total del arreglo nombres
     for (nat i = 0; i < n; i++) {
+        // Caso nombre no pertenece a la tabla
         if (!perteneceATTablaPersonas(t, nombres[i])) {
             continue;
         }
@@ -16,6 +18,7 @@ void listarEnOrden(TTablaPersonas t, char **nombres, nat n) {
         }
     }
 
+    // Imprime las personas de la cp hasta vaciarla
     while (!estaVaciaCP(cp)) {
         TPersona persona = prioritaria(cp);
         imprimirTPersona(persona);
